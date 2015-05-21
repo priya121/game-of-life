@@ -12,19 +12,19 @@ describe "game of life" do
         expect(game.cells).to eq([0,0,0,0])
     end
 
-    it "takes a 2d game with no live cells and returns an empty world" do 
+    it "takes a 2d game with one live cell and returns an empty world" do 
         game = World.new([1,0,0,0])
         game.tick
         expect(game.cells).to eq([0,0,0,0])
     end
 
-    it "takes a 2d game with no live cells and returns an empty world" do 
+    it "takes a 2d game with two live cells and returns an empty world" do 
         game = World.new([1,1,0,0])
         game.tick
         expect(game.cells).to eq([0,0,0,0])
     end
 
-    it "takes a 2d game with no live cells and returns an empty world" do 
+    it "takes a 2d game with one dead cell and returns four live cells" do 
         game = World.new([1,1,1,0])
         game.tick
         expect(game.cells).to eq([1,1,1,1])

@@ -7,8 +7,8 @@ class World
 
     def tick
         for i in 0..cells.length
-            if cells[i] == 1
-                if neighbour_count(i) == 2
+            if cells[i] == 1 || cells[i] == 0
+                if neighbour_count(i) == 2 || neighbour_count(i) == 3
                     cells[i] = 1
                 else
                     cells[i] = 0
@@ -18,8 +18,7 @@ class World
     end
 
     def neighbours(cell)
-        (0..cells.length).to_a - [cell]
-
+         (0..cells.length - 1).to_a - [cell]
     end
 
     def neighbour_count(cell)
