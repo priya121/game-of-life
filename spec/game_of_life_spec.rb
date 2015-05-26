@@ -29,4 +29,34 @@ describe "game of life" do
         game.tick
         expect(game.cells).to eq([1,1,1,1])
     end
+
+    it "takes a 2d game with 4 live cells and all stay alive in the next generation" do 
+        game = World.new([1,1,1,1])
+        game.tick
+        expect(game.cells).to eq([1,1,1,1])
+    end
+    
+    it "takes a 3d game with no live cells and returns an empty world" do
+        game = World.new([0,0,0,0,0,0,0,0,0])
+        game.tick
+        expect(game.cells).to eq([0,0,0,0,0,0,0,0,0])
+    end
+
+    it "takes a 3d game with one live cell and returns an empty world" do 
+        game = World.new([1,0,0,0,0,0,0,0,0])
+        game.tick
+        expect(game.cells).to eq([0,0,0,0,0,0,0,0,0])
+    end
+
+    it "takes a 3d game with two live cells and returns an empty world" do
+        game = World.new([1,1,0,0,0,0,0,0,0])
+        game.tick
+        expect(game.cells).to eq([0,0,0,0,0,0,0,0,0])
+    end
+
+    xit "takes a 3d game with three live cells and returns four live cells and three dead cells" do
+        game = World.new([1,1,1,0,0,0,0,0,0])
+        game.tick
+        expect(game.cells).to eq([1,1,0,1,1,0,0,0,0])
+    end
 end

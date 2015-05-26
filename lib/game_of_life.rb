@@ -1,7 +1,7 @@
 class World
     attr_reader :cells
 
-    def initialize(cells = []) 
+    def initialize(cells = [] || cells = [[]])
         @cells  = cells
     end
 
