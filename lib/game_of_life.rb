@@ -1,8 +1,22 @@
+class Board
+    def initialize(height,width)
+        @height = height
+        @width = width
+    end
+
+    def cell(x,y)
+        @x = x
+        @y = y
+    end
+end
+
 class World
     attr_reader :cells
 
-    def initialize(cells = [] || cells = [[]])
+    def initialize(cells = [],width,height)
         @cells  = cells
+        @width = width
+        @height = height
     end
 
     def tick
@@ -17,15 +31,26 @@ class World
         end
     end
 
-    def neighbours(cell)
-         (0..cells.length - 1).to_a - [cell]
+    def neighbours(index,x,y) 
+        n = []
+        n << index - @width - 1 if x > 0 && y > 0 
+        n << index - @width if y > 0 
+        n << index - @width + 1 if x < @width - 1 && y > 0 
+        n << index - 1  if x > 0  
+        n << index + 1 if x < @width - 1 
+        n << index + @width - 1 if x > 0 || y < @height - 1
+        n << index + @width if y < @height - 1
+        n << index + @width + 1 if x < @width - 1 && y < @height - 1 
+
+        return n
     end
 
     def neighbour_count(cell)
-        count = 0
+        count = 0  
         neighbours(cell).each do |index|
             count += cells[index] 
         end
         return count
     end
 end
+
