@@ -50,9 +50,8 @@ describe "game of life" do
     end
 
     it "takes a 9 cell game with three live cells and returns four live cells and three dead cells" do
-        game = World.new([1,1,1,0,0,0,0,0,0],3,3)
-        game.tick
-        expect(game.cells).to eq([0,1,0,0,1,0,0,0,0])
+        game = World.new([],3,3)
+        expect(game.neighbours(1)).to eq([0,2,3,4,5])
     end
 
     it "takes a 5 by 5 board and for a cell with index returns neighbours indicies" do
