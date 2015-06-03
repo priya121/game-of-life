@@ -1,22 +1,26 @@
-class Board
-    def initialize(height,width)
-        @height = height
-        @width = width
-    end
-
-    def cell(x,y)
-        @x = x
-        @y = y
-    end
-end
-
 class World
     attr_reader :cells
+    attr_reader :width
 
     def initialize(cells,width,height)
         @cells  = cells
         @width = width
         @height = height
+    end
+
+    def self.generate_cells(total_amount)
+        cells = [] 
+        (0..total_amount - 1).each do |cell|
+            rand = Random.new.rand(0..1)
+            cells << rand
+        end
+        return cells
+    end
+
+    def self.random_world(width,height)
+        cells = generate_cells(width*height)
+       world =  World.new((cells),20,20)
+       return world
     end
 
     def tick
