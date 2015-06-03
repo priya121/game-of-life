@@ -19,7 +19,7 @@ class World
 
     def self.random_world(width,height)
         cells = generate_cells(width*height)
-       world =  World.new((cells),20,20)
+       world =  World.new((cells),width,height)
        return world
     end
 
@@ -41,7 +41,7 @@ class World
 
     def should_be_alive?(cell)
         neighbours = neighbour_count(cell)
-        alive?(cell) && (2..3).include?(neighbours) || !alive?(cell) && neighbours == 3
+        (alive?(cell) && (2..3).include?(neighbours)) || (!alive?(cell) && neighbours == 3)
     end
 
         def neighbours(index) 
@@ -56,7 +56,11 @@ class World
             n << index + @width - 1 if x > 0 && y < @height - 1
             n << index + @width if y < @height - 1
             n << index + @width + 1 if x < @width - 1 && y < @height - 1 
-            n
+            
+            n.each do |p|
+                puts p if p < 0
+                sleep 5 if p < 0
+            end
         end
 
         def neighbour_count(cell)

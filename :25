@@ -22,7 +22,7 @@ describe Console do
     let(:screen) { double().as_null_object }
 
     def console
-        Console.new(world, input, output, timer, exiter, screen)
+        Console.new(world, input, output, timer, exiter)
     end
 
     describe "#display" do
@@ -32,30 +32,28 @@ describe Console do
         end
 
     end
-
+    
     describe "#next_generation" do
-        describe "timer" do
-            let(:timer) {double}
-            it "shows next generation" do
-                expect(timer).to receive(:sleep).with(0.5)
-                console.next_generation
-                expect(output.string).to eq("  \n  \n")
-            end
+        let (:timer) { double }
 
-            it "sleeps" do 
-                expect(timer).to receive(:sleep).with(0.5)
-                console.next_generation
-            end
+        it "shows next generation" do
+            expect(timer).to receive(:sleep).with(0.5)
+            console.next_generation
+            expect(output.string).to eq("  \n  \n")
         end
-        describe "screen" do
-            let (:screen) {double}
-            it "refreshes screen" do
 
-                expect(screen).to receive(:refresh)
-                console.next_generation
-            end
+        it "sleeps" do 
+            expect(timer).to receive(:sleep).with(0.5)
+            console.next_generation
+        end
+
+        it "refreshes screen" do
+
+        expect(screen)
         end
     end
+
+
     describe "#run" do
         it "runs multiple generations" do
             console.run

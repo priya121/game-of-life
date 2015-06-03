@@ -2,13 +2,13 @@ require "curses"
 require "game_of_life"
 
 class Console
-    def initialize(world,input,output,timer)
+    def initialize(world,input,output,timer,exiter,screen)
         @world = world
         @input = input
         @output = output
         @timer = timer
-        #Curses.init_screen
-        #Curses.curs_set 0
+        @exiter = exiter
+        @screen = screen
     end
 
     def display
@@ -18,7 +18,7 @@ class Console
             else @output.print " "
             end
             if (i+1) % @world.width == 0
-                @output.print "\n"
+                @output.print "\n\r"
             end
         end
     end
@@ -26,13 +26,17 @@ class Console
     def next_generation
         @world.tick
         display
+        @screen.refresh
         @timer.sleep(0.5)
     end
 
-    def start
+    def run
+        display
+        while !@exiter.exit? 
+            next_generation
+        end
 
     end
-
 
 end
 
