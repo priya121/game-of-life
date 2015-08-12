@@ -59,21 +59,18 @@ describe "game of life" do
     end
 
     it "takes a 6 by 6 board and for a given cell with index returns neighbours indicies" do 
-        game = World.new([],6,6)
-        expect(game.neighbours(1)).to eq([0,2,6,7,8])
+      game = World.new([],6,6)
+      expect(game.neighbours(1)).to eq([0,2,6,7,8])
     end
 
     it "takes a 7 by 7 board and for a given cell with an index returns neighbours indicies" do 
-        game = World.new([],7,7)
-        expect(game.neighbours(13)).to eq([5,6,12,19,20])
+      game = World.new([],7,7)
+      expect(game.neighbours(13)).to eq([5,6,12,19,20])
     end
 
     it "returns a list of 1s and 0s of size 400" do
-        random = World.random_world(20,20).cells
-        expect(random).to include(1) 
-        expect(random.size).to eq(400)
+      random = World.random_world(20,20).cells
+      expect(random).to include(1) 
+      expect(random.size).to eq(400)
     end
 end
-
-
-

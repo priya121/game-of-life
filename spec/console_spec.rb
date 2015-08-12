@@ -50,12 +50,12 @@ describe Console do
         describe "screen" do
             let (:screen) {double}
             it "refreshes screen" do
-
                 expect(screen).to receive(:refresh)
                 console.next_generation
             end
         end
     end
+
     describe "#run" do
         it "runs multiple generations" do
             console.run

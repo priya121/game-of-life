@@ -35,8 +35,6 @@ class Console
         while !@exiter.exit? 
             next_generation
         end
-
     end
-
 end
 
